@@ -12,7 +12,7 @@ export default function Navbar({ filterInputValue, setFilterInputValue }) {
 
   return (
     <nav className="navbar">
-      <Logo path={"/"} />
+      <Logo path="/" />
       <a className="logo">Logo</a>
 
       <div className="search">

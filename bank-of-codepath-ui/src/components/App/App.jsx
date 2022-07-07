@@ -7,11 +7,17 @@ import TransactionDetail from "../TransactionDetail/TransactionDetail";
 import { useState } from "react";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState([]);
-  const [transfer, setTransfer] = useState([]);
+  const [transfers, setTransfers] = useState([]);
   const [error, setError] = useState("");
   const [filterInputValue, setFilterInputValue] = useState("");
+  const [newTransactionForm, setNewTransactionForm] = useState({
+    category: "",
+    description: "",
+    amount: 0,
+  });
+  const [isCreating, setIsCreating] = useState(false);
 
   return (
     <div className="app">
@@ -22,7 +28,26 @@ export default function App() {
         />
         <main>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/"
+              element={
+                <Home
+                  transactions={transactions}
+                  setTransactions={setTransactions}
+                  transfers={transfers}
+                  setTransfers={setTransfers}
+                  error={error}
+                  setError={setError}
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                  filterInputValue={filterInputValue}
+                  newTransactionForm={newTransactionForm}
+                  setNewTransactionForm={setNewTransactionForm}
+                  isCreating={isCreating}
+                  setIsCreating={setIsCreating}
+                />
+              }
+            ></Route>
             <Route
               path="/transactions:transactionId"
               element={<TransactionDetail />}
